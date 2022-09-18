@@ -27,16 +27,17 @@ class Project implements Cloneable{
                 ", version=" + version +
                 '}';
     }
+
     @Override
-    protected Project clone() {
-        return new Project(this.id, this.name, this.version);
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
 
 public class PrototypeExample {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         Project original = new Project(1, "pr", 1.0);
-        Project clone = original.clone();
+        Project clone = (Project) original.clone();
         clone.setId(2);
         System.out.println(original);
         System.out.println(clone);
